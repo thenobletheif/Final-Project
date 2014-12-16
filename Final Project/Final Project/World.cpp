@@ -295,7 +295,7 @@ void World::initValues()
 	Light* flashlight = new Light();
 	lights.push_back(flashlight);
 	// init light values
-	lights.at(FLASHLIGHT)->setIsEnabled(true);
+	lights.at(FLASHLIGHT)->setIsEnabled(false);
 	lights.at(FLASHLIGHT)->setIsLocal(true);
 	lights.at(FLASHLIGHT)->setIsSpot(true);
 	lights.at(FLASHLIGHT)->setAmbient(vec3(ambientColor.red, ambientColor.green, ambientColor.blue));

@@ -12,6 +12,8 @@ Gameboard::~Gameboard()
 
 void Gameboard::draw(Shader shaderFile)
 {
+	previousShader = shaderFile;
+
 	if (piecesMoved)
 	{
 		checkPairs();
@@ -37,9 +39,20 @@ void Gameboard::draw(Shader shaderFile)
 
 }
 
+void Gameboard::redrawBoard()
+{
+	for (int i = 0; i < 7; i++)
+		for (int j = 0; j < 7; j++)
+		{
+			if (board[i][j] != NULL)
+				board[i][j]->draw(previousShader);
+		}
+}
 
 void Gameboard::init(Texture** newTextures)
 {
+	srand(time(NULL));
+
 	emptySpace = false;
 	piecesDeleted = false;
 	piecesMoved = false;
@@ -57,7 +70,8 @@ void Gameboard::init(Texture** newTextures)
 		}
 	}
 
-	selectedPiece = board[int(BOARD_SIZE / 2)][(BOARD_SIZE/2)];
+	selectedPiece[0] = int(BOARD_SIZE/2);
+	selectedPiece[1] = int(BOARD_SIZE/2);
 
 
 }
@@ -70,40 +84,42 @@ void boardClick(float x, float y)
 
 void Gameboard::shiftRow(bool right)
 {
-	int row = selectedPiece->center[0];
+	int row = selectedPiece[1];
 
 	if (right)
 	{
-		deletePiece(6, row);
+		deletePiece(row, 6);
 
 		for (int i = 6; i > 0; i--)
 		{
-			board[i][row] = board[i - 1][row];
-			board[i][row]->translate((-0.7 + 0.2*row) - (board[i][row]->center[0]), 0, 0);
+			board[row][i] = board[row][i - 1];
+			board[row][i]->translate(SPACE_BETWEEN, 0, 0);
 		}
 
-		createRandomPiece(0, row);
+		createRandomPiece(row, 0);
 	}
 	else
 	{
-		deletePiece(0, row);
+		deletePiece(row, 0);
 
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < 6; i++)
 		{
-			board[i][row] = board[i + 1][row];
-			board[i][row]->translate((-0.7 + 0.2*row) - (board[i][row]->center[0]), 0, 0);
+			board[row][i] = board[row][i + 1];
+			board[row][i]->translate(-1 * SPACE_BETWEEN, 0, 0);
 		}
 
-		createRandomPiece(6, row);
+		createRandomPiece(row, 6);
 	}
 
 	piecesMoved = true;
+
+	redrawBoard();
 
 }
 
 void Gameboard::shiftColumn(bool up)
 {
-	int column = selectedPiece->center[1];
+	int column = selectedPiece[0];
 
 	if (up)
 	{
@@ -111,39 +127,41 @@ void Gameboard::shiftColumn(bool up)
 
 		for (int i = 6; i > 0; i--)
 		{
-			board[i][column] = board[i - 1][column];
-			board[i][column]->translate((-0.7 + 0.2*column) - (board[i][column]->center[0]), 0, 0);
+			board[column][i] = board[column][i - 1];
+			board[column][i]->translate(0, SPACE_BETWEEN, 0);
 		}
 
-		createRandomPiece(0, column);
+		createRandomPiece(column, 0);
 	}
 	else
 	{
-		deletePiece(0, column);
+		deletePiece(column, 0);
 
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < 6; i++)
 		{
-			board[i][column] = board[i + 1][column];
-			board[i][column]->translate((-0.7 + 0.2*column) - (board[i][column]->center[0]), 0, 0);
+			board[column][i] = board[column][i + 1];
+			board[column][i]->translate(0, -1 * SPACE_BETWEEN, 0);
 		}
 
-		createRandomPiece(6, column);
+		createRandomPiece(column, 6);
 	}
 
 	piecesMoved = true;
+
+	redrawBoard();
+	pause(1);
 
 }
 
 void Gameboard::deletePiece(int row, int column)
 {
-	delete(board[row][column]);
+	//delete(board[row][column]);
 	board[row][column] = NULL;
 
 }
 
 void Gameboard::createRandomPiece(int row, int column)
 {
-	srand(time(NULL));
 
 	board[row][column] = new Piece();
 
@@ -189,6 +207,7 @@ void Gameboard::checkPairs()
 	{
 		for (int j = 0; j < 6; j++)
 		{
+			if (board[i][j] != NULL && board[i][j + 1] != NULL)
 			if (board[i][j]->getType() == board[i][j + 1]->getType())
 			{
 				pairedPieces[i][j] = true;
@@ -202,6 +221,7 @@ void Gameboard::checkPairs()
 	{
 		for (int j = 0; j < 6; j++)
 		{
+			if (board[j][i] != NULL && board[j + 1][i] != NULL)
 			if (board[j][i]->getType() == board[j + 1][i]->getType())
 			{
 				pairedPieces[j][i] = true;
@@ -215,10 +235,8 @@ void Gameboard::checkPairs()
 	if (piecesDeleted)
 		for (int i = 0; i < 7; i++)
 			for (int j = 0; j < 7; j++)
-			{
 				if (pairedPieces[i][j])
 					deletePiece(i, j);
-			}
 }
 
 void Gameboard::pieceFall()
@@ -229,12 +247,12 @@ void Gameboard::pieceFall()
 	{
 		start = 8;
 
-		for (int j = 6; j >= 0; j--)
+		for (int j = 0; j < 7; j++)
 		{
 			if (board[i][j] == NULL)
 			{
 				start = j;
-				j = -1;
+				j = 7;
 			}
 		}
 
@@ -244,7 +262,7 @@ void Gameboard::pieceFall()
 			{
 				board[i][start] = board[i][j];
 				board[i][j] = NULL;
-				board[i][start]->translate(0, (-0.7 + 0.2*start) - (board[i][start]->center[1]), 0);
+				board[i][start]->translate(0, -1 * SPACE_BETWEEN * (j - start), 0);
 				start++;
 				piecesMoved = true;
 				emptySpace = true;
@@ -265,4 +283,5 @@ void Gameboard::fillBoard()
 			}
 		}
 	}
+	piecesMoved = true;
 }

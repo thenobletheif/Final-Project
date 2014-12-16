@@ -42,6 +42,7 @@ public:
 	void shiftRow(bool);
 	void shiftColumn(bool);
 	void boardClick(float, float);
+	void redrawBoard();
 
 
 
@@ -56,6 +57,7 @@ private:
 	const float SPACE_BETWEEN = 0.7;
 
 	Piece* board[BOARD_SIZE][BOARD_SIZE];
+	Shader previousShader;
 
 	void createRandomPiece(int, int);
 	void deletePiece(int, int);
@@ -67,7 +69,14 @@ private:
 	bool piecesMoved;
 	bool emptySpace;
 
-	Piece* selectedPiece;
+	void pause(int dur)
+	{
+		int temp = time(NULL) + dur;
+
+		while (temp > time(NULL));
+	}
+
+	glm::vec2 selectedPiece;
 
 	Texture** textures;
 };
