@@ -136,15 +136,14 @@ void World::keyPress(unsigned char key, int x, int y)
 		break;
 	case 'l':
 		lighting_on = !lighting_on;
+		printf("lighting_on is now %d\n", lighting_on);
 		break;
 	case 'm':
 		shadow_maps_on = !shadow_maps_on;
 		break;
 	case 't':
 		lights.at(DIRECTIONAL)->setIsEnabled(!lights.at(DIRECTIONAL)->getIsEnabled());
-		break;
-	case 'f':
-		lights.at(FLASHLIGHT)->setIsEnabled(!lights.at(FLASHLIGHT)->getIsEnabled());
+		printf("directional light is now %d\n", lights.at(DIRECTIONAL)->getIsEnabled() );
 		break;
 	case 'w':
 		//if (cam.getEyeZ() > -70)
@@ -252,7 +251,7 @@ void World::initValues()
 	Light* flashlight = new Light();
 	lights.push_back(flashlight);
 	// init light values
-	lights.at(FLASHLIGHT)->setIsEnabled(true);
+	lights.at(FLASHLIGHT)->setIsEnabled(false);
 	lights.at(FLASHLIGHT)->setIsLocal(true);
 	lights.at(FLASHLIGHT)->setIsSpot(true);
 	lights.at(FLASHLIGHT)->setAmbient(vec3(ambientColor.red, ambientColor.green, ambientColor.blue));

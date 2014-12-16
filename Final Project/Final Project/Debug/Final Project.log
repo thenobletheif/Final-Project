@@ -1,60 +1,30 @@
-﻿Build started 12/12/2014 6:19:41 PM.
-     1>Project "C:\Users\alex deacon\Documents\GitHub\Final-Project\Final Project\Final Project\Final Project.vcxproj" on node 2 (Build target(s)).
+﻿Build started 12/16/2014 2:04:40 PM.
+     1>Project "C:\Users\Hunter\Documents\GitHub\Final-Project\Final Project\Final Project\Final Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D GLEW_STATIC /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Gameboard.cpp main.cpp Model.cpp Piece.cpp World.cpp
-         World.cpp
-     1>c:\dev\opengl\include\vgl.h(13): warning C4005: 'GLEW_STATIC' : macro redefinition
-                 command-line arguments :  see previous definition of 'GLEW_STATIC'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.h(106): warning C4091: 'static ' : ignored on left of 'World' when no variable is declared
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(5): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(11): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(35): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(36): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(59): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(85): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(213): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(230): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(238): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(239): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(263): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(265): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(266): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(267): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(281): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\world.cpp(282): warning C4305: 'initializing' : truncation from 'double' to 'float'
-         Piece.cpp
-     1>c:\dev\opengl\include\vgl.h(13): warning C4005: 'GLEW_STATIC' : macro redefinition
-                 command-line arguments :  see previous definition of 'GLEW_STATIC'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\piece.cpp(4): error C2039: 'Piece' : is not a member of 'Model'
-                 c:\users\alex deacon\documents\github\final-project\final project\final project\piece.h(39) : see declaration of 'Model'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\piece.cpp(5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\piece.cpp(7): warning C4508: 'Piece' : function should return a value; 'void' return type assumed
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\piece.cpp(9): error C2611: '(' : illegal following '~' (expected identifier)
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\piece.cpp(9): error C2059: syntax error : ')'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\piece.cpp(10): error C2059: syntax error : '{'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\piece.cpp(10): error C2143: syntax error : missing ';' before '{'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\piece.cpp(10): error C2447: '{' : missing function header (old-style formal list?)
-         Model.cpp
-     1>c:\dev\opengl\include\vgl.h(13): warning C4005: 'GLEW_STATIC' : macro redefinition
-                 command-line arguments :  see previous definition of 'GLEW_STATIC'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(498): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(505): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(523): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(528): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(544): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(551): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(580): warning C4018: '<' : signed/unsigned mismatch
-         GLM: rotate function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
-         Gameboard.cpp
-         Generating Code...
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(576): warning C4756: overflow in constant arithmetic
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(577): warning C4756: overflow in constant arithmetic
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(578): warning C4756: overflow in constant arithmetic
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\model.cpp(576): warning C4756: overflow in constant arithmetic
-         Skipping... (no relevant changes detected)
-         main.cpp
-     1>Done Building Project "C:\Users\alex deacon\Documents\GitHub\Final-Project\Final Project\Final Project\Final Project.vcxproj" (Build target(s)) -- FAILED.
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D GLEW_STATIC /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ShadowMap.cpp
+         ShadowMap.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Hunter\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Dev\OpenGL\lib glew32s.lib freeglut.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Hunter\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Hunter\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.lib" /MACHINE:X86 Debug\Axes.obj
+         Debug\Camera.obj
+         Debug\DirectionalLight.obj
+         Debug\Gameboard.obj
+         Debug\Light.obj
+         Debug\LoadShaders.obj
+         Debug\lodepng.obj
+         Debug\main.obj
+         Debug\Model.obj
+         Debug\Object.obj
+         Debug\Piece.obj
+         Debug\PointLight.obj
+         Debug\Shader.obj
+         Debug\ShadowMap.obj
+         Debug\Texture.obj
+         Debug\World.obj
+         LINK : C:\Users\Hunter\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.exe not found or not built by the last incremental link; performing full link
+     1>glew_static_vs2010_d.lib(glew.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'glew_static_vs2010_d.lib(glew.obj)' or at 'C:\Users\Hunter\Documents\GitHub\Final-Project\Final Project\Debug\vc100.pdb'; linking object as if no debug info
+         Final Project.vcxproj -> C:\Users\Hunter\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.exe
+     1>Done Building Project "C:\Users\Hunter\Documents\GitHub\Final-Project\Final Project\Final Project\Final Project.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:03.92
+Time Elapsed 00:00:02.28

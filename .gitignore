@@ -41,3 +41,18 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+*.opensdf
+*.sdf
+*.sdf
+*.suo
+*.idb
+*.sdf
+*.sdf
+*.suo
+*.tlog
+*.exe
+*.exe
+Final Project/Debug/Final Project.exe
+*.tlog
+*.exe

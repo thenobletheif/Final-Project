@@ -29,7 +29,7 @@ void Gameboard::draw(Shader shaderFile)
 	}
 
 	for (int i = 0; i < 7; i++)
-		for (int j; j < 7; j++)
+		for (int j = 0; j < 7; j++)
 		{
 			if (board[i][j] != NULL)
 				board[i][j]->draw(shaderFile);
