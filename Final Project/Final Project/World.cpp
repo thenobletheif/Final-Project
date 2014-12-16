@@ -29,11 +29,11 @@ void World::init()
 	initValues();
 
 	// initialize camera
-	cam.init(0, 5, 5);
+	cam.init(0, 0.6, 5);
 
 	// set camera movement characteristics
-	cam.setEyeMove(.2);
-	cam.setLookAtMove(.7);
+	//cam.setEyeMove(.2);
+	//cam.setLookAtMove(.7);
 
 	// initialize shaders
 	shader.init("Shaders/vertices.vert", "Shaders/fragments.frag");
@@ -56,6 +56,8 @@ void World::init()
 	// setup textures
 	setupTextures();
 
+	board.init(textures);
+
 	glClearColor(.7, .8, .8, 1);
 }
 
@@ -63,6 +65,7 @@ void World::display()
 {
 	// clear color and depth buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 	
 	if (lights.at(DIRECTIONAL)->getIsEnabled())
 	{
@@ -82,11 +85,16 @@ void World::display()
 		if (drawAxes)
 			axes->draw(shadowMapShader);
 
+		board.draw(shadowMapShader);
+		
+		/*
 		for (int i = 0; i < cubes.size(); i++)
 		{
 			cubes.at(i)->draw(shadowMapShader);
 		}
 		terrain.draw(shadowMapShader);
+		*/
+		
 
 		// unbind framebuffer
 		shadowMap.endDraw();
@@ -97,6 +105,7 @@ void World::display()
 		// set uniforms for Shadow Matrix and depth_texture
 		shadowMap.use(shader, 0);
 	}
+	
 	
 	
 
@@ -147,26 +156,30 @@ void World::keyPress(unsigned char key, int x, int y)
 		lights.at(FLASHLIGHT)->setIsEnabled(!lights.at(FLASHLIGHT)->getIsEnabled());
 		break;
 	case 'w':
+		board.shiftColumn(true);
 		//if (cam.getEyeZ() > -70)
-			cam.camIn();
+			//cam.camIn();
 		break;
 	case 'a':
+		board.shiftRow(false);
 		//if (cam.getEyeX() > -70)
-			cam.camLeft();
+			//cam.camLeft();
 		break;
 	case 's':
+		board.shiftColumn(false);
 		//if (cam.getEyeZ() < 70)
-			cam.camOut();
+			//cam.camOut();
 		break;
 	case 'd':
+		board.shiftRow(true);
 		//if (cam.getEyeX() < 70)
-			cam.camRight();
+			//cam.camRight();
 		break;
 	case 'q':
 		drawAxes = !drawAxes;
 		break;
 	case 'p':
-		createBlock();
+		//createBlock();
 		break;
 	default:
 		break;
@@ -177,11 +190,37 @@ void World::keyPress(unsigned char key, int x, int y)
 	glutPostRedisplay();
 }
 
+void World::mousePressed(int button, int state, int x, int y)
+{
+
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+
+	
+	}
+
+	//glutPostRedisplay();
+
+}
+
+void World::mousePassiveMove(int x, int y)
+{
+	glm::vec2 mousePos(x, y);
+
+
+	//glutPostRedisplay();
+
+}
+
+
+
+
 void World::arrowInput(int key, int x, int y)
 {
 	switch (key)
 	{
 	case GLUT_KEY_UP:
+		//board.shiftRow();
 		cam.camLookUp();
 		break;
 	case GLUT_KEY_DOWN:
@@ -226,11 +265,15 @@ void World::drawScene(Shader in_shader)
 	if (drawAxes)
 		axes->draw(in_shader);
 
+	/*
 	terrain.draw(in_shader);
 	for (int i = 0; i < cubes.size(); i++)
 	{
 		cubes.at(i)->draw(in_shader);
 	}
+	*/
+
+	board.draw(in_shader);
 }
 
 void World::initValues()
@@ -284,17 +327,21 @@ void World::initValues()
 	axes->init(axesPosition);
 	axes->setColor(axesColor);
 
-	terrain.init("Models/mineCraftGround.obj");
-	terrain.setColor(terrainColor);
-	terrain.scale(100);
+	//terrain.init("Models/mineCraftGround.obj");
+	//terrain.setColor(terrainColor);
+	//terrain.scale(100);
 }
 
 void World::setupTextures()
 {
 	
 	// Texture Files
-	textureFilenames[0] = "Textures/MineCraft.png";
-	textureFilenames[1] = "Textures/MineCraftGround.png";
+	textureFilenames[0] = "Textures/Red.png";
+	textureFilenames[1] = "Textures/Green.png";
+	textureFilenames[2] = "Textures/Blue.png";
+	textureFilenames[3] = "Textures/Yellow.png";
+	textureFilenames[4] = "Textures/Orange.png";
+	textureFilenames[5] = "Textures/Purple.png";
 
 	for (int i = 0; i < NUM_TEXTURES; i++)
 	{
@@ -303,14 +350,16 @@ void World::setupTextures()
 	}
 
 	//cube.setTexture(textures[0]);
-	terrain.setTexture(textures[1]);
-	textures[0]->load();
-	textures[1]->load();
+	//terrain.setTexture(textures[1]);
+
+	for (int i = 0; i < NUM_TEXTURES; i++)
+		textures[i]->load();
 
 }
 
 void World::idleFunc()
 {
+	/*
 	if (animateQueue.size() > 0)
 	{
 		switch (animateQueue.front())
@@ -322,8 +371,10 @@ void World::idleFunc()
 			break;
 		}
 	}
+	*/
 }
 
+/*
 void World::createBlock()
 {
 	PlaySound(TEXT("Sounds/blockCreate.wav"), NULL, SND_FILENAME);
@@ -338,7 +389,9 @@ void World::createBlock()
 
 	//animateQueue.push(1);
 }
+*/
 
+/*
 void World::animateBlockCreate()
 {
 	if (animate_amount == 0)
@@ -362,3 +415,4 @@ void World::animateBlockCreate()
 	}
 	
 }
+*/

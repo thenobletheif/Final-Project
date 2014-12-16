@@ -44,7 +44,7 @@ public:
 	Piece();
 	~Piece();
 
-	void init(string, int);
+	void init(string, int, Texture*);
 	int getType();
 	
 

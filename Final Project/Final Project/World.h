@@ -32,8 +32,9 @@
 #include "Light.h"
 #include "Camera.h"
 #include "ShadowMap.h"
+#include "Gameboard.h"
 
-#define NUM_TEXTURES 2 // cube and ground
+#define NUM_TEXTURES 6
 #define CAM_MOVE .1
 #define NUM_OBJECTS 4
 #define NUM_LIGHTS 3
@@ -54,6 +55,8 @@ public:
 	void display();							// display function
 	void keyPress(unsigned char, int, int);
 	void arrowInput(int, int, int);
+	void mousePressed(int button, int state, int x, int y);
+	void mousePassiveMove(int x, int y);
 	void draw();							// draw function for entire World
 	void drawScene(Shader);
 	void initValues();						// initializes values
@@ -62,8 +65,8 @@ public:
 
 	void idleFunc();
 
-	void createBlock();
-	void animateBlockCreate();
+	//void createBlock();
+	//void animateBlockCreate();
 
 private:
 
@@ -96,6 +99,7 @@ private:
 
 	Model terrain;
 	Model shape;
+	Gameboard board;
 
 	
 	queue<int> animateQueue;

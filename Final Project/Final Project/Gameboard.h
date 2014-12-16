@@ -20,6 +20,7 @@
 #include "Object.h"
 #include "Piece.h"
 #include "time.h"
+#include "Texture.h"
 
 using glm::mat4;
 using glm::vec2;
@@ -28,7 +29,7 @@ using glm::vec4;
 
 using std::cout;
 
-class Gameboard : public Object
+class Gameboard
 {
 
 public:
@@ -37,9 +38,10 @@ public:
 	~Gameboard();
 
 	void draw(Shader);
-	void init();
-	void shiftRow(int, bool);
-	void shiftColumn(int, bool);
+	void init(Texture**);
+	void shiftRow(bool);
+	void shiftColumn(bool);
+	void boardClick(float, float);
 
 
 
@@ -48,9 +50,12 @@ private:
 	int moves;
 	int points;
 
-	const int numTypes = 6;
 
-	Piece*** board;
+	static const int BOARD_SIZE = 7;
+	const int numTypes = 6;
+	const float SPACE_BETWEEN = 0.7;
+
+	Piece* board[BOARD_SIZE][BOARD_SIZE];
 
 	void createRandomPiece(int, int);
 	void deletePiece(int, int);
@@ -61,4 +66,8 @@ private:
 	bool piecesDeleted;
 	bool piecesMoved;
 	bool emptySpace;
+
+	Piece* selectedPiece;
+
+	Texture** textures;
 };

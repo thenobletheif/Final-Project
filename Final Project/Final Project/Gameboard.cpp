@@ -29,7 +29,7 @@ void Gameboard::draw(Shader shaderFile)
 	}
 
 	for (int i = 0; i < 7; i++)
-		for (int j; j < 7; j++)
+		for (int j = 0; j < 7; j++)
 		{
 			if (board[i][j] != NULL)
 				board[i][j]->draw(shaderFile);
@@ -38,7 +38,7 @@ void Gameboard::draw(Shader shaderFile)
 }
 
 
-void Gameboard::init()
+void Gameboard::init(Texture** newTextures)
 {
 	emptySpace = false;
 	piecesDeleted = false;
@@ -47,6 +47,7 @@ void Gameboard::init()
 	moves = 0;
 	points = 0;
 
+	textures = newTextures;
 
 	for (int i = 0; i < 7; i++)
 	{
@@ -56,11 +57,21 @@ void Gameboard::init()
 		}
 	}
 
+	selectedPiece = board[int(BOARD_SIZE / 2)][(BOARD_SIZE/2)];
+
 
 }
 
-void Gameboard::shiftRow(int row, bool right)
+void boardClick(float x, float y)
 {
+
+
+}
+
+void Gameboard::shiftRow(bool right)
+{
+	int row = selectedPiece->center[0];
+
 	if (right)
 	{
 		deletePiece(6, row);
@@ -90,8 +101,10 @@ void Gameboard::shiftRow(int row, bool right)
 
 }
 
-void Gameboard::shiftColumn(int column, bool up)
+void Gameboard::shiftColumn(bool up)
 {
+	int column = selectedPiece->center[1];
+
 	if (up)
 	{
 		deletePiece(6, column);
@@ -132,32 +145,33 @@ void Gameboard::createRandomPiece(int row, int column)
 {
 	srand(time(NULL));
 
-	board[row][column] = new Piece;
+	board[row][column] = new Piece();
 
 	switch (rand() % numTypes)
 	{
 	case 0:
-		board[row][column]->init("Models/mineCraftCube.obj", 0);
+		board[row][column]->init("Models/mineCraftCube.obj", 0, textures[0]);
 		break;
 	case 1:
-		board[row][column]->init("Models/mineCraftCube.obj", 1);
+		board[row][column]->init("Models/mineCraftCube.obj", 1, textures[1]);
 		break;
 	case 2:
-		board[row][column]->init("Models/mineCraftCube.obj", 2);
+		board[row][column]->init("Models/mineCraftCube.obj", 2, textures[2]);
 		break;
 	case 3:
-		board[row][column]->init("Models/mineCraftCube.obj", 3);
+		board[row][column]->init("Models/mineCraftCube.obj", 3, textures[3]);
 		break;
 	case 4:
-		board[row][column]->init("Models/mineCraftCube.obj", 4);
+		board[row][column]->init("Models/mineCraftCube.obj", 4, textures[4]);
 		break;
 	default:
-		board[row][column]->init("Models/mineCraftCube.obj", 5);
+		board[row][column]->init("Models/mineCraftCube.obj", 5, textures[5]);
 		break;
 	}
 
-	board[row][column]->translate((-0.7 + 0.2*row) - (board[row][column]->center[0]), (-0.7 + 0.2*column) - (board[row][column]->center[1]), 0);
+	board[row][column]->translate((((-1.0 * SPACE_BETWEEN * (BOARD_SIZE - 1.0)) / 2.0) + SPACE_BETWEEN*row) - (board[row][column]->center[0]), (((-1.0 * SPACE_BETWEEN * (BOARD_SIZE - 1.0)) / 2.0) + SPACE_BETWEEN*column) - (board[row][column]->center[1]), 0);
 
+	board[row][column]->scale(0.15);
 }
 
 void Gameboard::checkPairs()

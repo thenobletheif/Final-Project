@@ -48,6 +48,16 @@ void specialFunc(int key, int x, int y)
 	world.arrowInput(key, x, y);
 }
 
+void mousePressed(int button, int state, int x, int y)
+{
+	world.mousePressed(button, state, x, y);
+}
+
+void mousePassiveMove(int x, int y)
+{
+	world.mousePassiveMove(x, y);
+}
+
 void idleFunc()
 {
 	world.idleFunc();
@@ -80,6 +90,8 @@ int main(int argc, char* argv[])
 	glutDisplayFunc(display);
 	glutKeyboardFunc(keyPress);
 	glutSpecialFunc(specialFunc);
+	glutMouseFunc(mousePressed);
+	glutPassiveMotionFunc(mousePassiveMove);
 	glutIdleFunc(idleFunc);
 
 	//glut main loop
