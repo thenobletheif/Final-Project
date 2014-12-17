@@ -1,28 +1,41 @@
-﻿Build started 12/17/2014 2:16:07 PM.
+﻿Build started 12/17/2014 3:27:00 PM.
      1>Project "C:\Users\alex deacon\Documents\GitHub\Final-Project\Final Project\Final Project\Final Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D GLEW_STATIC /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Gameboard.cpp
          Gameboard.cpp
      1>c:\dev\opengl\include\vgl.h(13): warning C4005: 'GLEW_STATIC' : macro redefinition
                  command-line arguments :  see previous definition of 'GLEW_STATIC'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.h(57): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.h(59): warning C4305: 'initializing' : truncation from 'double' to 'const float'
      1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(73): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(96): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(97): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(105): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(106): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(107): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(117): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(118): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(119): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(121): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(122): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(124): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(125): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(132): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(167): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(215): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(217): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(102): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(103): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(111): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(112): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(115): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(120): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(121): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(129): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(130): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(131): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(133): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(134): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(136): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(137): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(146): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(185): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(234): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(236): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(325): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(326): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(340): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(341): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(345): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(352): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(353): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(356): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(357): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(371): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(372): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
        Link:
          C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\alex deacon\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Dev\OpenGL\lib glew32s.lib freeglut.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\alex deacon\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\alex deacon\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.lib" /MACHINE:X86 Debug\Axes.obj
          Debug\Camera.obj
@@ -45,4 +58,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.48
+Time Elapsed 00:00:01.63

@@ -226,8 +226,9 @@ void World::mousePassiveMove(int x, int y)
 {
 	glm::vec2 mousePos(x, y);
 
+	board.highlightPiece(x, y);
 
-	//glutPostRedisplay();
+	glutPostRedisplay();
 
 }
 
@@ -381,6 +382,8 @@ void World::setupTextures()
 
 void World::idleFunc()
 {
+	//pause(0.01);
+	//board.highlightPiece();
 	/*
 	if (animateQueue.size() > 0)
 	{
@@ -394,6 +397,7 @@ void World::idleFunc()
 		}
 	}
 	*/
+	//glutPostRedisplay();
 }
 
 /*

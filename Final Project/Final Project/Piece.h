@@ -20,6 +20,7 @@ Description: Model
 #include <sstream>
 #include <algorithm>
 
+#include <vector>
 #include "vgl.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -46,9 +47,19 @@ public:
 
 	void init(string, int, Texture*);
 	int getType();
+	void resetAngle();
+
+	void rotate(float, vec3);
+
+	
+
+
 	
 
 private:
+
+	vector <float> angles;
+	vector <vec3> axis;
 
 	int type;
 	

@@ -72,6 +72,12 @@ void Gameboard::init(Texture** newTextures)
 {
 	srand(time(NULL));
 
+	lastMousePos[0] = 0;
+	lastMousePos[1] = 0;
+
+	highlightedPiece[0] = -1;
+	highlightedPiece[1] = -1;
+
 	piecesShifted = false;
 	emptySpace = false;
 	piecesDeleted = false;
@@ -104,12 +110,18 @@ void Gameboard::unSelectPiece()
 {
 	int tempX = selectedPiece[0];
 	int tempY = selectedPiece[1];
-	board[tempX][tempY]->scale(0.8);
+
+	if (board[tempX][tempY] != NULL)
+		board[tempX][tempY]->scale(0.8);
 }
 
 void Gameboard::reSelectPiece()
 {
+	int tempX = selectedPiece[0];
+	int tempY = selectedPiece[1];
 
+	if (board[tempX][tempY] != NULL)
+		board[tempX][tempY]->scale(1.25);
 }
 
 void Gameboard::selectPiece(int x, int y)
@@ -128,6 +140,8 @@ void Gameboard::selectPiece(int x, int y)
 
 void Gameboard::shiftRow(bool up)
 {
+	unSelectPiece();
+
 	moves++;
 	int row = selectedPiece[1];
 
@@ -159,10 +173,14 @@ void Gameboard::shiftRow(bool up)
 	piecesShifted = true;
 	piecesMoved = true;
 
+	reSelectPiece();
+
 }
 
 void Gameboard::shiftColumn(bool right)
 {
+	unSelectPiece();
+
 	moves++;
 	int column = selectedPiece[0];
 
@@ -194,6 +212,7 @@ void Gameboard::shiftColumn(bool right)
 	piecesShifted = true;
 	piecesMoved = true;
 
+	reSelectPiece();
 }
 
 void Gameboard::deletePiece(int row, int column)
@@ -266,6 +285,8 @@ void Gameboard::checkPairs()
 
 void Gameboard::pieceFall()
 {
+	unSelectPiece();
+
 	int start;
 
 	for (int i = 0; i < 7; i++)
@@ -295,10 +316,73 @@ void Gameboard::pieceFall()
 	}
 
 	emptySpace = true;
+
+	reSelectPiece();
 }
+
+void Gameboard::highlightPiece()
+{
+	int tempX = highlightedPiece[0];
+	int tempY = highlightedPiece[1];
+
+
+
+	tempX = int((lastMousePos[0] - 100) / (710 / BOARD_SIZE));
+	tempY = BOARD_SIZE - 1 - int(lastMousePos[1] / (685 / BOARD_SIZE));
+
+	if (highlightedPiece[0] < BOARD_SIZE && highlightedPiece[0] >= 0 && highlightedPiece[1] < BOARD_SIZE && highlightedPiece[1] >= 0)
+	{
+		if (tempX != highlightedPiece[0] || tempY != highlightedPiece[1])
+			board[tempX][tempY]->resetAngle();
+	}
+
+
+	highlightedPiece[0] = tempX;
+	highlightedPiece[1] = tempY;
+
+	if (highlightedPiece[0] < BOARD_SIZE && highlightedPiece[0] >= 0 && highlightedPiece[1] < BOARD_SIZE && highlightedPiece[1] >= 0)
+	{
+		board[tempX][tempY]->rotate(0.005, { 0, 1, 0 });
+	}
+
+}
+
+void Gameboard::highlightPiece(int x, int y)
+{
+	lastMousePos[0] = x;
+	lastMousePos[1] = y;
+
+	
+	int tempX = highlightedPiece[0];
+	int tempY = highlightedPiece[1];
+
+	
+
+	tempX = int((x - 100) / (710 / BOARD_SIZE));
+	tempY = BOARD_SIZE - 1 - int(y / (685 / BOARD_SIZE));
+
+	if (highlightedPiece[0] < BOARD_SIZE && highlightedPiece[0] >= 0 && highlightedPiece[1] < BOARD_SIZE && highlightedPiece[1] >= 0)
+	{
+		if (tempX != highlightedPiece[0] || tempY != highlightedPiece[1])
+			board[tempX][tempY]->resetAngle();
+	}
+
+
+	highlightedPiece[0] = tempX;
+	highlightedPiece[1] = tempY;
+	
+	if (highlightedPiece[0] < BOARD_SIZE && highlightedPiece[0] >= 0 && highlightedPiece[1] < BOARD_SIZE && highlightedPiece[1] >= 0)
+	{
+		board[tempX][tempY] -> rotate(1, { 0, 1, 0 });
+	}
+	
+}
+
 
 void Gameboard::fillBoard()
 {
+	unSelectPiece();
+
 	for (int i = 0; i < 7; i++)
 	{
 		for (int j = 0; j < 7; j++)
@@ -310,4 +394,6 @@ void Gameboard::fillBoard()
 		}
 	}
 	piecesMoved = true;
+
+	reSelectPiece();
 }

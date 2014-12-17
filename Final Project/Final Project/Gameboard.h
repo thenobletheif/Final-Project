@@ -43,6 +43,8 @@ public:
 	void shiftRow(bool);
 	void shiftColumn(bool);
 	void selectPiece(int, int);
+	void highlightPiece(int, int);
+	void highlightPiece();
 
 
 
@@ -72,8 +74,11 @@ private:
 	void unSelectPiece();
 	void reSelectPiece();
 
+	glm::vec2 lastMousePos;
+
 
 	glm::vec2 selectedPiece;
+	glm::vec2 highlightedPiece;
 
 	Texture** textures;
 };
