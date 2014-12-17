@@ -10,24 +10,29 @@ Gameboard::~Gameboard()
 {
 }
 
-void Gameboard::draw(Shader shaderFile)
+bool Gameboard::draw(Shader shaderFile)
 {
+	bool doodoo = false;
+
 	previousShader = shaderFile;
 
 	if (piecesMoved)
 	{
 		checkPairs();
 		piecesMoved = false;
+		doodoo = true;
 	}
 	else if (piecesDeleted)
 	{
 		pieceFall();
 		piecesDeleted = false;
+		doodoo = true;
 	}
 	else if (emptySpace)
 	{
 		fillBoard();
 		emptySpace = false;
+		doodoo = true;
 	}
 
 	for (int i = 0; i < 7; i++)
@@ -37,6 +42,7 @@ void Gameboard::draw(Shader shaderFile)
 				board[i][j]->draw(shaderFile);
 		}
 
+	return doodoo;
 }
 
 void Gameboard::redrawBoard()
@@ -47,6 +53,8 @@ void Gameboard::redrawBoard()
 			if (board[i][j] != NULL)
 				board[i][j]->draw(previousShader);
 		}
+	//glFlush;
+	//pause(2);
 }
 
 void Gameboard::init(Texture** newTextures)
@@ -265,10 +273,11 @@ void Gameboard::pieceFall()
 				board[i][start]->translate(0, -1 * SPACE_BETWEEN * (j - start), 0);
 				start++;
 				piecesMoved = true;
-				emptySpace = true;
 			}
 		}
 	}
+
+	emptySpace = true;
 }
 
 void Gameboard::fillBoard()

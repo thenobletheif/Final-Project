@@ -37,7 +37,7 @@ public:
 	Gameboard();
 	~Gameboard();
 
-	void draw(Shader);
+	bool draw(Shader);
 	void init(Texture**);
 	void shiftRow(bool);
 	void shiftColumn(bool);

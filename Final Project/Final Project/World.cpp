@@ -61,8 +61,17 @@ void World::init()
 	glClearColor(.7, .8, .8, 1);
 }
 
+void pause(int dur)
+{
+	int temp = time(NULL) + dur;
+
+	while (temp > time(NULL));
+}
+
 void World::display()
 {
+	bool redisplay = false;
+
 	// clear color and depth buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
@@ -85,7 +94,7 @@ void World::display()
 		if (drawAxes)
 			axes->draw(shadowMapShader);
 
-		board.draw(shadowMapShader);
+		redisplay = board.draw(shadowMapShader);
 		
 		/*
 		for (int i = 0; i < cubes.size(); i++)
@@ -120,6 +129,12 @@ void World::display()
 	
 	// swap the buffers at the end of the display sequence
 	glutSwapBuffers();
+
+	if (redisplay)
+	{
+		pause(2);
+		glutPostRedisplay();
+	}
 }
 
 void World::renderShadowMaps()

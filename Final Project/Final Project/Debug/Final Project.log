@@ -1,4 +1,4 @@
-﻿Build started 12/16/2014 5:10:41 PM.
+﻿Build started 12/16/2014 6:53:57 PM.
      1>Project "C:\Users\alex deacon\Documents\GitHub\Final-Project\Final Project\Final Project\Final Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D GLEW_STATIC /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Gameboard.cpp
@@ -7,11 +7,11 @@
                  command-line arguments :  see previous definition of 'GLEW_STATIC'
      1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.h(57): warning C4305: 'initializing' : truncation from 'double' to 'const float'
      1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.h(74): warning C4244: 'initializing' : conversion from 'time_t' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(54): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(87): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(122): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(190): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(192): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(62): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(95): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(130): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(198): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\alex deacon\documents\github\final-project\final project\final project\gameboard.cpp(200): warning C4305: 'argument' : truncation from 'double' to 'float'
        Link:
          C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\alex deacon\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Dev\OpenGL\lib glew32s.lib freeglut.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\alex deacon\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\alex deacon\Documents\GitHub\Final-Project\Final Project\Debug\Final Project.lib" /MACHINE:X86 Debug\Axes.obj
          Debug\Camera.obj
@@ -34,4 +34,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.40
+Time Elapsed 00:00:01.65
