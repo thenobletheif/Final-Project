@@ -38,11 +38,11 @@ public:
 	~Gameboard();
 
 	bool draw(Shader);
+	void reDraw(Shader);
 	void init(Texture**);
 	void shiftRow(bool);
 	void shiftColumn(bool);
-	void boardClick(float, float);
-	void redrawBoard();
+	void selectPiece(int, int);
 
 
 
@@ -53,7 +53,7 @@ private:
 
 
 	static const int BOARD_SIZE = 7;
-	const int numTypes = 6;
+	const int numTypes = 9;
 	const float SPACE_BETWEEN = 0.7;
 
 	Piece* board[BOARD_SIZE][BOARD_SIZE];
@@ -65,16 +65,13 @@ private:
 	void fillBoard();
 	void pieceFall();
 
+	bool piecesShifted;
 	bool piecesDeleted;
 	bool piecesMoved;
 	bool emptySpace;
+	void unSelectPiece();
+	void reSelectPiece();
 
-	void pause(int dur)
-	{
-		int temp = time(NULL) + dur;
-
-		while (temp > time(NULL));
-	}
 
 	glm::vec2 selectedPiece;
 

@@ -10,29 +10,52 @@ Gameboard::~Gameboard()
 {
 }
 
+void Gameboard::reDraw(Shader shaderFile)
+{
+	for (int i = 0; i < 7; i++)
+		for (int j = 0; j < 7; j++)
+		{
+			if (board[i][j] != NULL)
+				board[i][j]->draw(shaderFile);
+		}
+}
+
 bool Gameboard::draw(Shader shaderFile)
 {
-	bool doodoo = false;
+	bool pauseRequest = false;
 
 	previousShader = shaderFile;
-
-	if (piecesMoved)
+	
+	if (piecesShifted)
 	{
+		cout << "shifted\n";
+		piecesShifted = false;
+
+		pauseRequest = true;
+	}
+	else if (piecesMoved)
+	{
+		cout << "delete\n";
 		checkPairs();
 		piecesMoved = false;
-		doodoo = true;
+
+		pauseRequest = true;
 	}
 	else if (piecesDeleted)
 	{
+		cout << "fall\n";
 		pieceFall();
 		piecesDeleted = false;
-		doodoo = true;
+
+		pauseRequest = true;
 	}
 	else if (emptySpace)
 	{
+		cout << "fill\n";
 		fillBoard();
 		emptySpace = false;
-		doodoo = true;
+
+		pauseRequest = true;
 	}
 
 	for (int i = 0; i < 7; i++)
@@ -42,25 +65,14 @@ bool Gameboard::draw(Shader shaderFile)
 				board[i][j]->draw(shaderFile);
 		}
 
-	return doodoo;
-}
-
-void Gameboard::redrawBoard()
-{
-	for (int i = 0; i < 7; i++)
-		for (int j = 0; j < 7; j++)
-		{
-			if (board[i][j] != NULL)
-				board[i][j]->draw(previousShader);
-		}
-	//glFlush;
-	//pause(2);
+	return pauseRequest;
 }
 
 void Gameboard::init(Texture** newTextures)
 {
 	srand(time(NULL));
 
+	piecesShifted = false;
 	emptySpace = false;
 	piecesDeleted = false;
 	piecesMoved = false;
@@ -81,61 +93,86 @@ void Gameboard::init(Texture** newTextures)
 	selectedPiece[0] = int(BOARD_SIZE/2);
 	selectedPiece[1] = int(BOARD_SIZE/2);
 
-
-}
-
-void boardClick(float x, float y)
-{
+	int tempX = selectedPiece[0];
+	int tempY = selectedPiece[1];
+	board[tempX][tempY]->scale(1.25);
 
 
 }
 
-void Gameboard::shiftRow(bool right)
+void Gameboard::unSelectPiece()
 {
+	int tempX = selectedPiece[0];
+	int tempY = selectedPiece[1];
+	board[tempX][tempY]->scale(0.8);
+}
+
+void Gameboard::reSelectPiece()
+{
+
+}
+
+void Gameboard::selectPiece(int x, int y)
+{
+	int tempX = selectedPiece[0];
+	int tempY = selectedPiece[1];
+	board[tempX][tempY]->scale(0.8);
+
+	selectedPiece[0] = int((x - 100)/(710 / BOARD_SIZE));
+	selectedPiece[1] = BOARD_SIZE - 1 - int(y / (685 / BOARD_SIZE));	//because screen coordinate y increases as it goes down, flip it
+
+	tempX = selectedPiece[0];
+	tempY = selectedPiece[1];
+	board[tempX][tempY]->scale(1.25);
+}
+
+void Gameboard::shiftRow(bool up)
+{
+	moves++;
 	int row = selectedPiece[1];
-
-	if (right)
-	{
-		deletePiece(row, 6);
-
-		for (int i = 6; i > 0; i--)
-		{
-			board[row][i] = board[row][i - 1];
-			board[row][i]->translate(SPACE_BETWEEN, 0, 0);
-		}
-
-		createRandomPiece(row, 0);
-	}
-	else
-	{
-		deletePiece(row, 0);
-
-		for (int i = 0; i < 6; i++)
-		{
-			board[row][i] = board[row][i + 1];
-			board[row][i]->translate(-1 * SPACE_BETWEEN, 0, 0);
-		}
-
-		createRandomPiece(row, 6);
-	}
-
-	piecesMoved = true;
-
-	redrawBoard();
-
-}
-
-void Gameboard::shiftColumn(bool up)
-{
-	int column = selectedPiece[0];
 
 	if (up)
 	{
-		deletePiece(6, column);
+		//deletePiece(row, 6);
 
 		for (int i = 6; i > 0; i--)
 		{
-			board[column][i] = board[column][i - 1];
+			*board[i][row] = *board[i - 1][row];
+			board[i][row]->translate(SPACE_BETWEEN, 0, 0);
+		}
+
+		createRandomPiece(0, row);
+	}
+	else
+	{
+		//deletePiece(row, 0);
+
+		for (int i = 0; i < 6; i++)
+		{
+			*board[i][row] = *board[i + 1][row];
+			board[i][row]->translate(-1 * SPACE_BETWEEN, 0, 0);
+		}
+
+		createRandomPiece(6, row);
+	}
+
+	piecesShifted = true;
+	piecesMoved = true;
+
+}
+
+void Gameboard::shiftColumn(bool right)
+{
+	moves++;
+	int column = selectedPiece[0];
+
+	if (right)
+	{
+		//deletePiece(6, column);
+		
+		for (int i = 6; i > 0; i--)
+		{
+			*board[column][i] = *board[column][i - 1];
 			board[column][i]->translate(0, SPACE_BETWEEN, 0);
 		}
 
@@ -143,27 +180,25 @@ void Gameboard::shiftColumn(bool up)
 	}
 	else
 	{
-		deletePiece(column, 0);
+		//deletePiece(column, 0);
 
 		for (int i = 0; i < 6; i++)
 		{
-			board[column][i] = board[column][i + 1];
+			*board[column][i] = *board[column][i + 1];
 			board[column][i]->translate(0, -1 * SPACE_BETWEEN, 0);
 		}
 
 		createRandomPiece(column, 6);
 	}
 
+	piecesShifted = true;
 	piecesMoved = true;
-
-	redrawBoard();
-	pause(1);
 
 }
 
 void Gameboard::deletePiece(int row, int column)
 {
-	//delete(board[row][column]);
+	delete(board[row][column]);
 	board[row][column] = NULL;
 
 }
@@ -173,27 +208,9 @@ void Gameboard::createRandomPiece(int row, int column)
 
 	board[row][column] = new Piece();
 
-	switch (rand() % numTypes)
-	{
-	case 0:
-		board[row][column]->init("Models/mineCraftCube.obj", 0, textures[0]);
-		break;
-	case 1:
-		board[row][column]->init("Models/mineCraftCube.obj", 1, textures[1]);
-		break;
-	case 2:
-		board[row][column]->init("Models/mineCraftCube.obj", 2, textures[2]);
-		break;
-	case 3:
-		board[row][column]->init("Models/mineCraftCube.obj", 3, textures[3]);
-		break;
-	case 4:
-		board[row][column]->init("Models/mineCraftCube.obj", 4, textures[4]);
-		break;
-	default:
-		board[row][column]->init("Models/mineCraftCube.obj", 5, textures[5]);
-		break;
-	}
+	int randomType = rand() % numTypes;
+	board[row][column]->init("Models/mineCraftCube.obj", randomType, textures[randomType]);
+
 
 	board[row][column]->translate((((-1.0 * SPACE_BETWEEN * (BOARD_SIZE - 1.0)) / 2.0) + SPACE_BETWEEN*row) - (board[row][column]->center[0]), (((-1.0 * SPACE_BETWEEN * (BOARD_SIZE - 1.0)) / 2.0) + SPACE_BETWEEN*column) - (board[row][column]->center[1]), 0);
 

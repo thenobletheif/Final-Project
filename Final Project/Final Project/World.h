@@ -34,7 +34,7 @@
 #include "ShadowMap.h"
 #include "Gameboard.h"
 
-#define NUM_TEXTURES 6
+#define NUM_TEXTURES 9
 #define CAM_MOVE .1
 #define NUM_OBJECTS 4
 #define NUM_LIGHTS 3

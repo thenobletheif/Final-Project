@@ -29,7 +29,7 @@ void World::init()
 	initValues();
 
 	// initialize camera
-	cam.init(0, 0.6, 5);
+	cam.init(0, 0.3, 5);
 
 	// set camera movement characteristics
 	//cam.setEyeMove(.2);
@@ -65,7 +65,8 @@ void pause(int dur)
 {
 	int temp = time(NULL) + dur;
 
-	while (temp > time(NULL));
+	cout << "pause\n";
+	while (temp >= time(NULL));
 }
 
 void World::display()
@@ -132,7 +133,7 @@ void World::display()
 
 	if (redisplay)
 	{
-		pause(2);
+		pause(0.65);
 		glutPostRedisplay();
 	}
 }
@@ -210,7 +211,10 @@ void World::mousePressed(int button, int state, int x, int y)
 
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
+		cout << x << "||" << y << "\n";
 
+		if (x >= 100 && x <= 810 && y <= 685)
+			board.selectPiece(x, y);
 	
 	}
 
@@ -288,7 +292,7 @@ void World::drawScene(Shader in_shader)
 	}
 	*/
 
-	board.draw(in_shader);
+	board.reDraw(in_shader);
 }
 
 void World::initValues()
@@ -353,10 +357,13 @@ void World::setupTextures()
 	// Texture Files
 	textureFilenames[0] = "Textures/Red.png";
 	textureFilenames[1] = "Textures/Green.png";
-	textureFilenames[2] = "Textures/Blue.png";
+	textureFilenames[2] = "Textures/DarkBlue.png";
 	textureFilenames[3] = "Textures/Yellow.png";
 	textureFilenames[4] = "Textures/Orange.png";
 	textureFilenames[5] = "Textures/Purple.png";
+	textureFilenames[6] = "Textures/Pink.png";
+	textureFilenames[7] = "Textures/Teal.png";
+	textureFilenames[8] = "Textures/LightBlue.png";
 
 	for (int i = 0; i < NUM_TEXTURES; i++)
 	{

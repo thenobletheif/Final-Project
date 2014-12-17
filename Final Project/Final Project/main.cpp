@@ -25,7 +25,7 @@
 
 // window width and height
 #define WIN_WIDTH 900
-#define WIN_HEIGHT 900
+#define WIN_HEIGHT 2500
 
 using std::cerr;
 using std::endl;
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA);
 	glutInitWindowSize(WIN_WIDTH, WIN_HEIGHT);
-	glutInitWindowPosition(900, 0);
+	glutInitWindowPosition(300, 0);
 	glutInitContextVersion(3, 3);
 	glutInitContextProfile(GLUT_CORE_PROFILE);
 	glutCreateWindow("Project 5");
